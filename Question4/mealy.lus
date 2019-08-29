@@ -1,0 +1,36 @@
+node s0(a:bool) returns (o:bool ;s:int)
+let
+	o=0; 
+	s=if(a=0) then 0 else 1;
+tel
+
+
+node s1(a:bool) returns (o:bool ;s:int)
+let
+	o=0;
+	s=if(a=0) then 2 else 1;
+tel
+
+
+node s2(a:bool) returns (o:bool ;s:int)
+let
+	o=0; 
+	s=if(a=0) then 0 else 3;
+tel
+
+
+node s3(a:bool) returns (o:bool ;s:int)
+let
+	o=if(a=0) then 0 else 1;
+	s=if(a=0) then 2 else 1;
+tel
+
+
+node MEALY(input:bool) returns (output:bool)
+var state:int;
+let
+	(output,state)= s0(input) -> if(pre(state)=0) then s0(input)
+					else if (pre(state)=1) then s1(input)
+					else if (pre(state)=2) then s2(input)
+					else s3(input);
+tel

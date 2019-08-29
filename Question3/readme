@@ -1,0 +1,8 @@
+Run the node COUNTER from jk.lus to execute the mod 12 counter.
+
+It will count from 0 to 11.
+
+q0 is the least significant bit and q3 is most significant.
+
+State will change on rising edge.
+

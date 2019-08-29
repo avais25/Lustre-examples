@@ -1,0 +1,10 @@
+node CAR(on:bool; mode:int) returns (light:bool ; hi:bool)
+var flag:bool;count:int;
+let
+	flag=1 ->if (mode>=0) then 1 else if (pre(count)=0) then (not pre(flag)) else pre(flag);
+	count=9 ->if(pre(mode)>=0 and mode<0) then 9 else if(pre(count)=0 or mode>=0) then 9 else (pre(count)-1);
+	light=on;
+	hi=if (mode =0) then 0
+	   else if (mode>0) then 1
+	   else if (mode<0  and flag=1) then 1 else 0;
+tel

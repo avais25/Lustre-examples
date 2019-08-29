@@ -1,0 +1,17 @@
+node TrafficLight(r, y, g : bool)
+returns (red, yellow, green : bool)
+let
+	red = r -> pre(yellow) ;
+	yellow = y -> pre(green) ;
+	green = g -> pre(red) ;
+tel
+
+
+node ROADS (reset : bool)
+returns (redH, yellowH, greenH, redV, yellowV, greenV : bool)
+var count:bool;
+let
+	count= 1->not pre(count);
+	(redH, yellowH, greenH) = (0,0,1)->if count then TrafficLight(reset, false, not(reset)) else (pre(redH),pre(yellowH),pre(greenH));
+	(redV, yellowV, greenV) = (1,0,0)->if count then TrafficLight(not(reset),false,reset) else (pre(redV),pre(yellowV),pre(greenV));
+tel

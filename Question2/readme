@@ -1,0 +1,7 @@
+Run the node ROADS from traffic.lus to emulate traffic signal.
+
+Traffic light will change its state after every two cycle.
+
+I have considered a horizontal and vertical one way road.
+
+redH represents red light for horizontal road , redV represents red light for vertical road.

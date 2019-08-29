@@ -1,0 +1,21 @@
+run the node CAR to emulate the headlight.
+
+I have discussed with Prof. Paritosh and he told me to keep both output as boolean.
+Input value of MODE is integer.
+
+mode=0 means Normal
+mode<0 means Flashing
+mode>0 means High
+
+In flashing mode the HI variable will be kept TRUE for 10 cycles then FALSE for 10 cycles then again TRUE and so on..
+
+ON is a boolean input variable and it will affect the value of variable LIGHT.
+
+I have submitted two version of the code :-
+
+Version 1: In this version value of ON and MODE are independent i.e. even if ON is false MODE can change. Flashing will start count from 0 to 10 in high mode whenever it is invoked. 
+
+Version 2: In this version value of HI depend on ON and MODE inputs. If ON is false change of mode will not be reflected(and all the flag and count varible will be reset).It will only be reflected when ON is true. Flashing will start count from 0 to 10 in high mode whenever it is invoked. 
+
+
+Flashing mode will work correctly under all the conditions. (If previous MODE was normal/high or if previous ON variable was false , it will not effect the COUNT varible of flashing mode. I will always start count from 0 to 10 in high mode whenever it is invoked and will keep toggling after 10 cycles.)

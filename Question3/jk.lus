@@ -1,0 +1,35 @@
+node EDGE (X: bool) returns (Y: bool);		--detecting edge for rising edge triggered
+let
+Y= false -> X and not pre(X);
+tel
+
+
+node JK(j,k,reset,clk:bool) returns (q,qc:bool)			--node for flip flop
+var temp:bool;
+let
+	temp= 0 -> if (j=0 and k=0) then pre(q)
+		else if(j=1 and k=1) then not pre(q)
+		else if(j=1 and k=0) then 1
+		else 0;
+	q= if reset then 0 else if(EDGE(clk)) then temp else (0->pre(q));
+	qc=not q;
+tel
+
+
+
+
+node COUNTER(s:bool) returns (clk,q0,q1,q2,q3:bool)	--node for counter
+var k1,k2,k3,k0,reset:bool;
+let
+	clk= 0 -> (not pre(clk));		--generating clock
+	
+
+	reset=0 -> if(pre(q0)=1 and pre(q1)=1 and pre(q2)=0 and pre(q3)=1 and clk=1) then 1 else 0;
+
+	--asynchronus implementation
+	(q0,k0)=JK(1,1,reset,clk);			
+	(q1,k1)=JK(1,1,reset,k0);
+	(q2,k2)=JK(1,1,reset,k1);
+	(q3,k3)=JK(1,1,reset,k2);
+
+tel
